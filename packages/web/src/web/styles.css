@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --surface-2: #1e1e1e;
+  --accent: #E8B94F;
+  --accent-2: #D94F3D;
+  --text: #F5F0E8;
+  --text-muted: #9A9080;
+  --border: #2a2a2a;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-script: 'Caveat', cursive;
+  --font-body: 'DM Sans', sans-serif;
+  --graffiti: url('/graffiti-tile.png');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* ── Graffiti section base ── */
+.graffiti-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.graffiti-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--graffiti);
+  background-size: 600px 600px;
+  background-repeat: repeat;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content inside graffiti sections must be above the texture */
+.graffiti-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* Hero text reveal animation */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-animate {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.3s; }
+.hero-delay-3 { animation-delay: 0.5s; }
+.hero-delay-4 { animation-delay: 0.7s; }
+
+/* Word reveal */
+.word-reveal-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(12px) rotate(-2deg);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+}
+.word-reveal-word.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) rotate(0deg);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-inner {
+  display: flex;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+.marquee-inner:hover { animation-play-state: paused; }
