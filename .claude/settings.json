@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__14ce01ef-c4bd-41ee-966c-ea4bfac8c3ac__deploy_to_vercel"
+    ]
+  }
+}
