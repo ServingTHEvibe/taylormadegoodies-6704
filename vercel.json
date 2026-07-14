@@ -1,5 +1,6 @@
 {
-  "buildCommand": "bun --cwd packages/web run build",
-  "outputDirectory": "packages/web/dist",
-  "installCommand": "bun install"
+  "rootDirectory": "packages/web",
+  "installCommand": "cd ../.. && bun install",
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist"
 }
