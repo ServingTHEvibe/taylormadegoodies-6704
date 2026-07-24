@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "packages/web",
-  "buildCommand": "bunx vite build",
+  "buildCommand": "bun run build",
   "outputDirectory": "dist"
 }
